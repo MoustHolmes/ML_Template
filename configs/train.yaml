@@ -1,0 +1,27 @@
+defaults:
+  - _self_
+  - data: mnist.yaml
+  - model: mnist.yaml
+  - callbacks: default.yaml
+  - logger: wandb.yaml
+  - trainer: default.yaml
+  - experiment: null
+
+# Task name for easier identification
+task_name: "train"
+
+# Set to true to use mixed precision training
+use_amp: False
+
+# Seeds for reproducibility
+seed: 42
+
+# Print config tree using Rich library
+print_config: True
+
+# Disable python warnings if they annoy you
+ignore_warnings: True
+
+# Train/val/test mode
+train: True
+test: True

@@ -1,0 +1,12 @@
+wandb:
+  _target_: pytorch_lightning.loggers.wandb.WandbLogger
+  project: "mnist-template"
+  name: ${now:%Y-%m-%d_%H-%M-%S}
+  save_dir: ${paths.output_dir}
+  offline: False
+  id: null
+  log_model: False
+  prefix: ""
+  group: ""
+  tags: []
+  job_type: "train"
