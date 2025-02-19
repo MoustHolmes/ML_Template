@@ -24,6 +24,7 @@ class MNISTLitModule(LightningModule):
         ----
             net: Neural network model for digit classification
             optimizer: Optimizer for training the network
+
         """
         super().__init__()
         self.save_hyperparameters(logger=False, ignore=["net"])
@@ -55,6 +56,7 @@ class MNISTLitModule(LightningModule):
         Returns:
         -------
             Logits tensor of shape (B, 10)
+
         """
         return self.net(x)
 
@@ -74,6 +76,7 @@ class MNISTLitModule(LightningModule):
         Returns:
         -------
             Tuple of (loss, predictions, targets)
+
         """
         x, y = batch
         logits = self.forward(x)
@@ -94,6 +97,7 @@ class MNISTLitModule(LightningModule):
         Returns:
         -------
             Computed loss value
+
         """
         loss, preds, targets = self.model_step(batch)
         # Update and log metrics
@@ -110,6 +114,7 @@ class MNISTLitModule(LightningModule):
         ----
             batch: Tuple of (images, labels)
             batch_idx: Index of the current batch
+
         """
         loss, preds, targets = self.model_step(batch)
         # Update and log metrics
@@ -131,6 +136,7 @@ class MNISTLitModule(LightningModule):
         ----
             batch: Tuple of (images, labels)
             batch_idx: Index of the current batch
+
         """
         loss, preds, targets = self.model_step(batch)
         # Update and log metrics
@@ -145,6 +151,7 @@ class MNISTLitModule(LightningModule):
         Returns
         -------
             Dictionary containing the configured optimizer
+
         """
         optimizer = self.hparams.optimizer(params=self.parameters())
         return {"optimizer": optimizer}

@@ -1,10 +1,10 @@
 from typing import Any, List, Optional
 
 import hydra
-import pytorch_lightning as pl
+import lightning as pl
 import torch
+from lightning import Callback, LightningDataModule, LightningModule, Trainer
 from omegaconf import DictConfig
-from pytorch_lightning import Callback, LightningDataModule, LightningModule, Trainer
 
 
 @hydra.main(config_path="../configs", config_name="train", version_base="1.2")
@@ -18,6 +18,7 @@ def train(cfg: DictConfig) -> Optional[float]:
     Returns:
     -------
         Optional float: Metric score for hyperparameter optimization.
+
     """
     # Set seed for random number generators
     if cfg.get("seed"):

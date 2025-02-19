@@ -43,6 +43,7 @@ data/
 logs/
 lightning_logs/
 wandb/
+outputs/
 
 # Template inspiration folder
 template_inspiration/

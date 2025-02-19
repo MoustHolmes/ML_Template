@@ -26,6 +26,7 @@ class SimpleDenseNet(nn.Module):
             lin2_size: Size of the second hidden layer
             lin3_size: Size of the third hidden layer
             output_size: Size of the output layer (default: 10 for MNIST classes)
+
         """
         super().__init__()
         self.model = nn.Sequential(
@@ -48,6 +49,7 @@ class SimpleDenseNet(nn.Module):
         Returns:
         -------
             Output tensor of shape (batch_size, output_size)
+
         """
         batch_size = x.size(0)
         x = x.view(batch_size, -1)

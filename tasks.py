@@ -12,6 +12,7 @@ def setup_environment(c, cuda="11.8", force_rebuild=False):
         c: Invoke context
         cuda: CUDA version to install
         force_rebuild: Force recreation of environment if it exists
+
     """
     env_name = "ml-template"
 
@@ -37,6 +38,7 @@ def setup_precommit(c):
     Args:
     ----
         c: Invoke context
+
     """
     subprocess.run(["pre-commit", "install"])
 
@@ -48,6 +50,7 @@ def clean(c):
     Args:
     ----
         c: Invoke context
+
     """
     patterns = ["*.pyc", "__pycache__", "*.egg-info", "dist", "build"]
     for pattern in patterns:
@@ -62,6 +65,7 @@ def lint(c):
     Args:
     ----
         c: Invoke context
+
     """
     print("Running black...")
     c.run("black .")
@@ -78,5 +82,22 @@ def test(c):
     Args:
     ----
         c: Invoke context
+
     """
     c.run("pytest tests/ -v")
+
+
+@task
+def generate_docs(c):
+    """Generate project structure documentation.
+
+    Args:
+    ----
+        c: Invoke context
+
+    """
+    print("Generating project structure documentation...")
+    from src.utils.project_structure import ProjectStructureGenerator
+
+    generator = ProjectStructureGenerator(".")
+    generator.save_structure()
